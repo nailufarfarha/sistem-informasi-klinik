@@ -1,3 +1,56 @@
+/* color paltte */
+/* orange FF6403 */
+/* green 12835E*/
+
 .navbar {
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.img-fluid {
+  object-fit: cover;
+  width: 100%;
+  height: 50;
+}
+
+.about {
+  text-align: center;
+  padding: 25px 20px 25px 20px;
+}
+
+.welcome {
+  padding-bottom: 20px;
+}
+
+.text-orange {
+  color: #ff6403;
+}
+
+.overview {
+  text-align: justify;
+}
+
+/* .overview p {
+  color: blue;
+} */
+
+.layanan {
+  background-color: #d9d9d9;
+}
+
+.layanan-header {
+  text-align: center;
+  padding: 25px 20px 25px 20px;
+}
+
+/* .card-layanan {
+  background-color: "transparent";
+  border: "none";
+  box-shadow: "none";
+  align-content: center;
+} */
+
+.card-layanan img {
+  width: 50px;
+  height: 50px;
+  align-items: center;
 }

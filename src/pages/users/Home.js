@@ -1,38 +1,70 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "../../App.css";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import Navigation from "../../components/Navigation";
+import clinic from "../../assets/clinic.jpeg";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import logo from "../../assets/logo.png";
+import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
+import icon_pomum from "../../assets/poli-umum.png";
 
 const Home = () => {
   return (
-    <Navbar expand="lg" className="navbar ">
-      <Container>
-        <Navbar.Brand href="#home">
-          <img src={logo} alt="logo" width="140" height="50" className="d-inline-block align-top" />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" style={{ justifyContent: "end" }}>
-          <Nav className="mr-auto">
-            <Nav.Link href="#home">Beranda</Nav.Link>
-            <NavDropdown title="Layanan" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="Fasilitas" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#link">Tentang Klinik</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <div className="Home">
+      <Navigation />
+      <div className="hero">
+        <img src={clinic} alt="Fatimah Medical Clinic" className="img-fluid" />
+      </div>
+      {/* tentang */}
+      <div className="about">
+        <h2 className="welcome">
+          <span>Selamat Datang di Website </span>
+          <span className="text-orange">FATIMAH MEDICAL CLINIC</span>
+        </h2>
+        <div className="about-1">
+          <Row>
+            <Col>
+              <img src={logo} alt="Fatimah Medical Clinic" />
+            </Col>
+            <Col className="overview">
+              Fatimah Medical Clinic adalah sebuah klinik pratama atau fasilitas kesehatan yang menyelenggarakan dan menyediakan pelayanan medik dasar yang didirikan pada tanggal 08 November 2021 dan dibentuk oleh lebih dari satu tenaga
+              kesehatan yang dipimpin oleh seorang tenaga medis yaitu Dokter yang terletak di Jl. Cikeris Desa Cikeris Kecamatan Bojong Kabupaten Purwakarta
+              <p>Baca Selengkapnya</p>
+            </Col>
+          </Row>
+        </div>
+      </div>
+      {/* layanan */}
+      <div className="layanan">
+        <h2 className="layanan-header">
+          <span>Layanan </span>
+          <span className="text-orange">FATIMAH MEDICAL CLINIC</span>
+        </h2>
+        <CardGroup className="card-layanan">
+          <Card style={{ backgroundColor: "transparent", border: "none", boxShadow: "none" }}>
+            <Card.Img variant="top" src={icon_pomum} />
+            <Card.Body>
+              <Card.Title>Poli Umum</Card.Title>
+            </Card.Body>
+          </Card>
+          <Card style={{ backgroundColor: "transparent", border: "none", boxShadow: "none" }}>
+            <Card.Img variant="top" src="holder.js/100px160" />
+            <Card.Body>
+              <Card.Title>Card title</Card.Title>
+            </Card.Body>
+          </Card>
+          <Card style={{ backgroundColor: "transparent", border: "none", boxShadow: "none" }}>
+            <Card.Img variant="top" src="holder.js/100px160" />
+            <Card.Body>
+              <Card.Title>Card title</Card.Title>
+            </Card.Body>
+          </Card>
+        </CardGroup>
+      </div>
+      <div className="fasilitas"></div>
+      <div className="footer"></div>
+    </div>
   );
 };
 
