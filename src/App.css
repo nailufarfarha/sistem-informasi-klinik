@@ -25,32 +25,78 @@
   color: #ff6403;
 }
 
+.about-1 img,
+.grid img {
+  max-width: 100%;
+  height: auto;
+}
+
 .overview {
   text-align: justify;
 }
-
-/* .overview p {
-  color: blue;
-} */
 
 .layanan {
   background-color: #d9d9d9;
 }
 
-.layanan-header {
+.layanan-header,
+.fasilitas-header {
   text-align: center;
   padding: 25px 20px 25px 20px;
 }
 
-/* .card-layanan {
-  background-color: "transparent";
-  border: "none";
-  box-shadow: "none";
-  align-content: center;
-} */
-
-.card-layanan img {
-  width: 50px;
-  height: 50px;
+.grid-container {
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr;
   align-items: center;
+}
+
+.grid-container :last-child {
+  grid-column: 2;
+}
+
+.grid-container .card {
+  background: #d9d9d9;
+  border: none;
+  text-align: center;
+  justify-self: center;
+  align-items: center;
+  padding-bottom: 25px;
+}
+
+.grid-container h6 {
+  padding-top: 10px;
+}
+
+.grid-container-fas {
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr;
+  align-items: center;
+  grid-gap: 20px;
+  padding: 0px 30px 20px 30px;
+  border-radius: 0;
+}
+
+.grid-container-fas img {
+  max-width: 100%;
+  height: auto;
+}
+
+.footer {
+  background-color: #12835e;
+  display: grid;
+  grid-template-columns: 2fr 3fr 3fr;
+  margin-top: 25px;
+  padding: 20px 20px 25px 20px;
+  align-items: center;
+}
+
+.footer h5,
+.footer p {
+  color: white;
+}
+
+.footer img {
+  max-width: 60%;
+  height: auto;
 }
