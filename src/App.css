@@ -64,8 +64,13 @@
   padding-bottom: 25px;
 }
 
+.icon-layanan {
+  color: #12835e;
+}
+
 .grid-container h6 {
   padding-top: 10px;
+  color: #12835e;
 }
 
 .grid-container-fas {
@@ -85,10 +90,9 @@
 .footer {
   background-color: #12835e;
   display: grid;
-  grid-template-columns: 2fr 3fr 3fr;
+  grid-template-columns: 3fr 3fr 2fr;
   margin-top: 25px;
   padding: 20px 20px 25px 20px;
-  align-items: center;
 }
 
 .footer h5,
@@ -96,7 +100,48 @@
   color: white;
 }
 
+.contact {
+  word-spacing: 5px;
+}
+
 .footer img {
   max-width: 60%;
   height: auto;
+}
+
+.sosmed {
+  color: white;
+  letter-spacing: 20px;
+}
+
+.credit {
+  background-color: #0f6448;
+  color: white;
+  padding: 10px 0px 10px 30px;
+}
+
+.hero-1 {
+  position: relative;
+}
+
+.hero-1 img {
+  opacity: 0.5;
+}
+
+.hero-1 h2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  text-align: center;
+}
+
+.tentang {
+  padding: 20px 100px 20px 100px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.tentang span {
+  text-align: justify;
 }

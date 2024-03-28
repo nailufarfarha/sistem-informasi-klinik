@@ -1,14 +1,17 @@
 import React from "react";
 import "../../App.css";
 import Navigation from "../../components/Navigation";
+import Footer from "../../components/Footer";
 import clinic from "../../assets/clinic.jpeg";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import logo from "../../assets/logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStethoscope, faPersonBreastfeeding, faFlask, faMortarPestle, faUserNurse, faHouseMedical, faHospital } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
   return (
-    <div className="Home">
+    <div className="body">
       <Navigation />
       <div className="hero">
         <img src={clinic} alt="Fatimah Medical Clinic" className="img-fluid" />
@@ -40,35 +43,36 @@ const Home = () => {
         </h2>
         <div className="grid-container">
           <div className="card">
-            <img src={require("../../assets/poli-umum.png")} alt="Poli Umum" style={{ width: "60px", height: "60px" }} />
+            <FontAwesomeIcon icon={faStethoscope} className="icon-layanan" style={{ color: "#12835e" }} />
             <h6>Poli Umum</h6>
           </div>
           <div className="card">
-            <img src={require("../../assets/polikia.png")} alt="Poli Kia" />
+            <FontAwesomeIcon icon={faPersonBreastfeeding} className="icon-layanan" />
             <h6>Poli Kia</h6>
           </div>
           <div className="card">
-            <img src={require("../../assets/igd.png")} alt="IGD 24 Jam" style={{ width: "60px", height: "60px" }} />
+            <FontAwesomeIcon icon={faHospital} className="icon-layanan" />
             <h6>IGD 24 Jam</h6>
           </div>
           <div className="card">
-            <img src={require("../../assets/farmasi.png")} alt="Farmasi" style={{ width: "55px", height: "55px" }} />
+            <FontAwesomeIcon icon={faMortarPestle} className="icon-layanan" />
             <h6>Farmasi</h6>
           </div>
           <div className="card">
-            <img src={require("../../assets/laboratory.png")} alt="Laboratorium" style={{ width: "55px", height: "55px" }} />
+            <FontAwesomeIcon icon={faFlask} className="icon-layanan" />
             <h6>Laboratorium</h6>
           </div>
           <div className="card">
-            <img src={require("../../assets/homecare.png")} alt="Home Care" style={{ width: "60px", height: "60px" }} />
+            <FontAwesomeIcon icon={faHouseMedical} className="icon-layanan" />
             <h6>Home Care</h6>
           </div>
           <div className="card">
-            <img src={require("../../assets/medis.png")} alt="Tindakan Medis" style={{ width: "60px", height: "60px" }} />
+            <FontAwesomeIcon icon={faUserNurse} className="icon-layanan" />
             <h6>Tindakan Medis</h6>
           </div>
         </div>
       </div>
+      {/* fasilitas */}
       <div className="fasilitas">
         <h2 className="fasilitas-header">
           <span>Fasilitas </span>
@@ -86,21 +90,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="footer">
-        <div className="footer-column">
-          <img src={require("../../assets/logofooter.png")} />
-        </div>
-        <div className="footer-column">
-          <h5>Hubungi Kami</h5>
-          <p>08123456789</p>
-          <p>fatimahmedicalclinic@gmail.com</p>
-          <p>Jl. Cikeris, Desa Cikeris, Kecamatan Bojong, Kabupaten Purwakarta</p>
-        </div>
-        <div className="footer-column">
-          <h5>Sosial Media</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor lorem et ipsum luctus, ut feugiat velit fermentum.</p>
-        </div>
-      </div>
+      {/* footer */}
+      <Footer />
     </div>
   );
 };
