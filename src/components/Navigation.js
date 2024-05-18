@@ -21,7 +21,7 @@ const Navigation = () => {
             <Nav.Link href="/about">Tentang Kami</Nav.Link>
             <NavDropdown title="Fasilitas & Layanan" id="basic-nav-dropdown">
               <NavDropdown.Item href="/fasilitas">Fasilitas</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Layanan</NavDropdown.Item>
+              <NavDropdown.Item href="/layanan">Layanan</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

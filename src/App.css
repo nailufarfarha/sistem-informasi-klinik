@@ -145,3 +145,127 @@
 .tentang span {
   text-align: justify;
 }
+
+/* CSS ADMIN */
+.header-logo {
+  background-color: #0f6448;
+  height: 100vh;
+}
+
+.icon-log {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.icon-log img {
+  height: 70vh;
+}
+
+.pic-log {
+  display: flex;
+  justify-content: center;
+  padding-top: 120px;
+}
+
+.pic-log img {
+  height: 100px;
+}
+
+.txt-log {
+  text-align: center;
+  padding: 20px 0px 10px 0px;
+}
+
+.form-group input {
+  font-size: 15px;
+  margin-top: 20px;
+  margin-left: 50px;
+  border-radius: 8px;
+  padding: 5px;
+  width: 80%;
+  height: 40px;
+  border: 1px solid #d9d9d9;
+  color: rgb(0, 0, 0);
+}
+
+.input-field:active {
+  border-color: #d9d9d9;
+}
+
+.btn-login {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 50px;
+  border-radius: 8px;
+  width: 80%;
+  height: 40px;
+  border: none;
+  background-color: #ff6403;
+  color: white;
+}
+
+/* CSS SIDE BAR */
+.admin-sidebar {
+  background-color: #0f6448;
+  color: white;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto; /* Add this line to enable vertical scrolling */
+  /* z-index: 1000; */
+  /* transition: width 0.3s ease, left 0.3s ease; */
+  height: auto; /* Add a fixed height for the sidebar */
+}
+
+.admin-sidebar img {
+  width: 130px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.admin-sidebar li {
+  margin-top: 1px;
+  margin-left: 15px;
+}
+
+.sb-logout {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 10px;
+}
+
+.icon-profile {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.content-fasilitas,
+.content-layanan {
+  margin-left: 290px;
+  margin-top: 100px;
+}
+
+.btn-add {
+  background-color: #ff6403;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 5px;
+  border: 0;
+}
+
+.content-fasilitas-data,
+.content-layanan-data {
+  margin-top: 20px;
+  margin-right: 50px;
+}

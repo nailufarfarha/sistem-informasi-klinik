@@ -5,6 +5,11 @@ import "./index.css";
 import Home from "./pages/users/Home";
 import About from "./components/About";
 import Fasilitas from "./components/Fasilitas";
+import Layanan from "./components/Layanan";
+import Login from "./pages/admin/Login";
+import Dashboard from "./pages/admin/Dashboard";
+import AdmFasilitas from "./pages/admin/AdmFasilitas";
+import AdmLayanan from "./pages/admin/AdmLayanan";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,6 +18,12 @@ root.render(
       <Route path="/home" Component={Home} />
       <Route path="/about" Component={About} />
       <Route path="/fasilitas" Component={Fasilitas} />
+      <Route path="/layanan" Component={Layanan} />
+      <Route path="/login" Component={Login} />
+      <Route path="/dashboard" Component={Dashboard} />
+
+      <Route path="/dashboard/fasilitas" Component={AdmFasilitas} />
+      <Route path="/dashboard/layanan" Component={AdmLayanan} />
     </Routes>
   </BrowserRouter>
 );
