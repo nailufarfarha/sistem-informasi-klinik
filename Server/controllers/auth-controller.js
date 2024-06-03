@@ -1,22 +1,53 @@
-import { Express } from "express";
-import User from "../models/user.js";
+import User from "../models/user-model.js";
+import bcryptjs from "bcryptjs";
+import jsonwebtoken from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
-export const Auth = async (req, res) => {
-  try {
-    const user = await User.findOne({
-      username: req.body.username,
-      password: req.body.password,
-    });
+export const DaftarUser = async (req, res) => {
+  const { namalengkap, username, password } = req.body;
 
-    if (!user) {
-      return res.status(404).json({ message: "Username atau Password tidak ditemukan!", user });
+  const hashPassword = await bcryptjs.hash(password, 10);
+
+  const user = new User({
+    namalengkap: namalengkap,
+    username: username,
+    password: hashPassword,
+  });
+
+  user.save();
+
+  return res.status(201).json({
+    message: "User berhasil didaftarkan!",
+  });
+};
+
+export const LoginUser = async (req, res) => {
+  const { username, password } = req.body;
+
+  const datauser = await User.findOne({ username: username });
+
+  if (datauser) {
+    const passwordUser = await bcryptjs.compare(password, datauser.password);
+    if (passwordUser) {
+      const data = {
+        id: datauser._id,
+      };
+      const token = await jsonwebtoken.sign(data, process.env.JWT_SECRET);
+
+      return res.status(200).json({
+        message: "berhasil",
+        token: token,
+        // username: username,
+        // password: password,
+      });
     }
-    const userData = {
-      username: user.username,
-      password: user.password,
-    };
-    return res.status(200).json({ message: "Berhasil Login!", user: userData });
-  } catch (error) {
-    return res.status(500).json({ message: "Terjadi Kesalahan pada server!" });
+  } else {
+    return res.status(404).json({
+      message: "username tidak terdaftar",
+    });
   }
 };
+
+// export default DaftarUser;
+// export { LoginUser };
