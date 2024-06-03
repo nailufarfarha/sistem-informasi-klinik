@@ -7,6 +7,14 @@ dotenv.config();
 export const DaftarUser = async (req, res) => {
   const { namalengkap, username, password } = req.body;
 
+  let usernameUser = await User.findOne({ username: username });
+  if (usernameUser) {
+    return res.status(404).json({
+      status: false,
+      message: "Username sudah tersedia!",
+    });
+  }
+
   const hashPassword = await bcryptjs.hash(password, 10);
 
   const user = new User({
@@ -41,10 +49,16 @@ export const LoginUser = async (req, res) => {
         // username: username,
         // password: password,
       });
+    } else {
+      return res.status(404).json({
+        status: false,
+        message: "Password salah!",
+      });
     }
   } else {
     return res.status(404).json({
-      message: "username tidak terdaftar",
+      status: false,
+      message: "Username tidak terdaftar!",
     });
   }
 };
