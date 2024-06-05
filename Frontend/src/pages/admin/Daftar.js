@@ -1,61 +1,67 @@
 import React, { useState } from "react";
 import piclogin from "../../assets/login.png"; //kalau titiknya 2 berarti ada 2 folder di luar
 import logo from "../../assets/logo.png";
-// import { useNavigate } from "react-router-dom";
-// import axios from "axios";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-const Login = () => {
-  //   const navigate = useNavigate();
+const Daftar = () => {
   const [namalengkap, setNamalengkap] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const [Message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  const [succsesMsg, setSuccsesMsg] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [succsesMsg, setSuccsesMsg] = useState("");
+  // const [loading, setLoading] = useState(false);
 
   const ChangeUsername = (e) => {
     // console.log(e.target.value);
     const value = e.target.value;
     setUsername(value);
+    setErrorMsg("");
   };
 
   const ChangeNamalengkap = (e) => {
     // console.log(e.target.value);
     const value = e.target.value;
     setNamalengkap(value);
+    setErrorMsg("");
   };
 
   const ChangePassword = (e) => {
     // console.log(e.target.value);
     const value = e.target.value;
     setPassword(value);
+    setErrorMsg("");
   };
 
-  //   const handleLoginSubmit = async (event) => {
-  //     event.preventDefault();
+  const klikDaftar = () => {
+    const data = {
+      namalengkap: namalengkap,
+      username: username,
+      password: password,
+    };
 
-  //     try {
-  //       setLoading(true);
-  //       setErrorMsg("");
-  //       setSuccsesMsg("");
-  //       const response = await axios.post("http://localhost:8080/api/v1/auth", {
-  //         username,
-  //         password,
-  //       });
-  //       console.log(response);
-  //       if (response.status === 200) {
-  //         setSuccsesMsg("Berhasil Login");
-  //         localStorage.setItem("password", response.data.user.password);
+    axios
+      .post("http://localhost:8081/daftar", data)
+      .then((result) => {
+        if (result) {
+          if (result.data) {
+            setNamalengkap("");
+            setUsername("");
+            setPassword("");
 
-  //         navigate("/dashboard");
-  //       } else if (response.status === 401) {
-  //         setErrorMsg("Email atau password tidak ditemukan");
-  //       }
-  //     } catch (error) {
-  //       console.log("Error during login:", error);
-  //       setErrorMsg("Terjadi kesalahan pada server");
-  //     }
-  //   };
+            setMessage(result.data.message);
+            setTimeout(() => {
+              setMessage("");
+            }, 5000);
+          }
+        }
+      })
+      .catch((e) => {
+        setErrorMsg(e.response.data.message);
+      });
+  };
 
   return (
     <div className="container-fluid">
@@ -72,22 +78,24 @@ const Login = () => {
           </div>
           <h4 className="txt-log">Daftar Admin</h4>
 
-          <form>
-            <p>{succsesMsg}</p>
+          <div>
+            <p>{Message}</p>
             <p>{errorMsg}</p>
+
             <div className="form-group">
               <input type="text" id="namalengkap" name="namalengkap" placeholder="Nama Lengkap" value={namalengkap} autoComplete="off" onChange={ChangeNamalengkap} />
               <input type="text" id="username" name="username" placeholder="Username" value={username} autoComplete="off" onChange={ChangeUsername} />
               <input type="password" id="password" name="password" placeholder=" Password" value={password} autoComplete="off" onChange={ChangePassword} />
-              <button type="submit" className="btn-login">
+              <button className="btn-login" onClick={klikDaftar}>
                 Daftar
               </button>
+              <Link to="/login">Sudah punya akun? Login disini.</Link>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Daftar;
