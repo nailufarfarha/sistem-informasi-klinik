@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import piclogin from "../../assets/login.png"; //kalau titiknya 2 berarti ada 2 folder di luar
+import piclogin from "../../assets/login.png";
 import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -8,34 +8,28 @@ const Daftar = () => {
   const [namalengkap, setNamalengkap] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const [Message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  // const [succsesMsg, setSuccsesMsg] = useState("");
-  // const [loading, setLoading] = useState(false);
 
   const ChangeUsername = (e) => {
-    // console.log(e.target.value);
     const value = e.target.value;
     setUsername(value);
     setErrorMsg("");
   };
 
   const ChangeNamalengkap = (e) => {
-    // console.log(e.target.value);
     const value = e.target.value;
     setNamalengkap(value);
     setErrorMsg("");
   };
 
   const ChangePassword = (e) => {
-    // console.log(e.target.value);
     const value = e.target.value;
     setPassword(value);
     setErrorMsg("");
   };
 
-  const klikDaftar = () => {
+  const handleRegist = () => {
     const data = {
       namalengkap: namalengkap,
       username: username,
@@ -86,7 +80,7 @@ const Daftar = () => {
               <input type="text" id="namalengkap" name="namalengkap" placeholder="Nama Lengkap" value={namalengkap} autoComplete="off" onChange={ChangeNamalengkap} />
               <input type="text" id="username" name="username" placeholder="Username" value={username} autoComplete="off" onChange={ChangeUsername} />
               <input type="password" id="password" name="password" placeholder=" Password" value={password} autoComplete="off" onChange={ChangePassword} />
-              <button className="btn-login" onClick={klikDaftar}>
+              <button className="btn-login" onClick={handleRegist}>
                 Daftar
               </button>
               <Link to="/login">Sudah punya akun? Login disini.</Link>

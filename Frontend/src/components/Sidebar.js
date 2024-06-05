@@ -1,12 +1,18 @@
-// src/components/Sidebar.js
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faChartBar, faDatabase, faEnvelopeOpenText, faHouse, faBars, faArrowRightToBracket, faFolderOpen, faRectangleList } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faArrowRightToBracket, faFolderOpen, faRectangleList } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logofooter.png";
 import "../App.css";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <div>
       <ul className={`navbar-nav admin-sidebar sidebar`} id="accordionSidebar">
@@ -24,10 +30,8 @@ const Sidebar = () => {
             <span className="ms-2">Beranda</span>
           </Link>
         </li>
-        {/* Divider */}
         <hr className="sidebar-divider text-white" />
 
-        {/* Nav Item - Pages Collapse Menu */}
         <li className="nav-item">
           <Link to="/dashboard/fasilitas" className="nav-link" href="tables.html">
             <FontAwesomeIcon icon={faFolderOpen} />
@@ -35,28 +39,17 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link
-            to="/dashboard/layanan"
-            className="nav-link collapsed"
-            href="#"
-            // data-toggle="collapse"
-            data-target="#collapsePages"
-            aria-expanded="true"
-            aria-controls="collapsePages"
-          >
+          <Link to="/dashboard/layanan" className="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
             <FontAwesomeIcon icon={faRectangleList} />
             <span className="ms-2">Layanan</span>
           </Link>
         </li>
-        {/* Nav Item - Charts */}
 
         <li className="sb-logout nav-item">
-          <Link to="/login" className="nav-link">
-            <FontAwesomeIcon icon={faArrowRightToBracket} />
-            <span className="ms-2">Keluar</span>
-          </Link>
+          <FontAwesomeIcon icon={faArrowRightToBracket} />
+          <button onClick={handleLogout}>Keluar</button>
+          <span className="ms-2"></span>
         </li>
-        {/* Sidebar Toggler (Sidebar) */}
       </ul>
     </div>
   );
