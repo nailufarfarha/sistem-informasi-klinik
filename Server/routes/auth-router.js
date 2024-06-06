@@ -2,8 +2,6 @@ import express from "express";
 import { DaftarUser, LoginUser } from "../controllers/auth-controller.js";
 import { runValidation, validationDaftar, validationLogin } from "../validation/index.js";
 
-// import DaftarUser, { LoginUser } from "../controllers/auth-controller.js";
-
 const router = express.Router();
 
 router.post("/daftar", validationDaftar, runValidation, DaftarUser);

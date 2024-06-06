@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import authRouter from "./routes/auth-router.js";
+import fasilitasRouter from "./routes/fasilitas-router.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -13,6 +14,7 @@ dotenv.config();
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/", authRouter);
+app.use("/", fasilitasRouter);
 
 mongoose
   .connect("mongodb+srv://nailufarfrh:gqB1tIEoXmVh8XqN@cluster0.8tsgs3v.mongodb.net/klinik-fatimah?retryWrites=true&w=majority")
