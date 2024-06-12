@@ -11,6 +11,7 @@ import Daftar from "./pages/admin/Daftar";
 import Dashboard from "./pages/admin/Dashboard";
 import AdmFasilitas from "./pages/admin/AdmFasilitas";
 import AdmLayanan from "./pages/admin/AdmLayanan";
+// import DataFasilitas from "./pages/admin/DataFasilitas";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

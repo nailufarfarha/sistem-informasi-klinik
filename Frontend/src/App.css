@@ -269,3 +269,29 @@
   margin-top: 20px;
   margin-right: 50px;
 }
+
+.tambah-fasilitas {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin-right: 50px;
+  padding: 10px;
+}
+
+/* CSS POPUP */
+
+.tambah-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.tambah-form label {
+  margin-top: 10px;
+}
+
+.form-buttons {
+  display: flex;
+  margin-top: 20px;
+}
+
+.form-buttons Button {
+  margin: 5px;
+}
