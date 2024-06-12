@@ -1,37 +1,87 @@
 import Fasilitas from "../models/fasilitas-model.js";
-import multer from "multer";
-import path from "path";
+import { ObjectId } from "mongoose";
 
-// Setup Multer to save files to the server
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/fasilitas");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-const upload = multer({ storage: storage }).single("image");
+// Create
+export const createFasilitas = async (req, res) => {
+  try {
+    const newFasilitas = new Fasilitas({
+      keterangan: req.body.keterangan,
+      image: {
+        data: req.file.buffer,
+        contentType: req.file.mimetype,
+      },
+    });
 
-export const uploadFasilitas = (req, res) => {
-  upload(req, res, function (err) {
-    if (err) {
-      return res.status(500).json({ message: "Error uploading file." });
-    }
-    if (!req.file) {
-      return res.status(400).json({ message: "No file uploaded." });
-    }
-
-    const newFasilitas = new Fasilitas();
-    newFasilitas.keterangan = req.body.keterangan;
-    newFasilitas.img.data = req.file.path;
-    newFasilitas.img.contentType = req.file.mimetype;
-
-    newFasilitas
-      .save()
-      .then(() => res.status(201).json({ message: "Image uploaded successfully." }))
-      .catch((err) => res.status(500).json({ message: "Error saving image.", error: err }));
-  });
+    await newFasilitas.save();
+    res.status(201).json({ message: "Fasilitas created successfully" });
+  } catch (error) {
+    console.error("Error creating fasilitas:", error); // Log error
+    res.status(500).json({ message: "Error creating fasilitas", error });
+  }
 };
 
-export default uploadFasilitas;
+// Read All
+export const getFasilitas = async (req, res) => {
+  try {
+    const fasilitas = await Fasilitas.find();
+    res.status(200).json(fasilitas);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Read One
+export const getFasilitasById = async (req, res) => {
+  try {
+    const fasilitas = await Fasilitas.findById(req.params.id);
+    if (!fasilitas) {
+      return res.status(404).json({ message: "Fasilitas not found" });
+    }
+    res.status(200).json(fasilitas);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Update
+export const updateFasilitas = async (req, res) => {
+  try {
+    const updatedData = {
+      keterangan: req.body.keterangan,
+    };
+
+    if (req.file) {
+      updatedData.image = {
+        data: req.file.buffer,
+        contentType: req.file.mimetype,
+      };
+    }
+
+    const fasilitas = await Fasilitas.findOneAndUpdate({ _id: ObjectId(req.params.id) }, updatedData, { new: true });
+
+    if (!fasilitas) {
+      return res.status(404).json({ message: "Fasilitas not found" });
+    }
+
+    res.status(200).json({ message: "Fasilitas updated successfully" });
+  } catch (error) {
+    console.error("Error updating fasilitas:", error); // Log error
+    res.status(500).json({ message: "Error updating fasilitas", error });
+  }
+};
+
+// Delete
+export const deleteFasilitas = async (req, res) => {
+  console.log("Received id:", { _id: req.params.id }); // Tambahkan log ini
+  try {
+    const fasilitas = await Fasilitas.findByIdAndDelete({ _id: req.params.id });
+    if (!fasilitas) {
+      return res.status(404).json({ message: "Fasilitas not found" });
+    }
+
+    res.status(200).json({ message: "Fasilitas deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting fasilitas:", error); // Log error
+    res.status(500).json({ message: "Error deleting fasilitas", error });
+  }
+};

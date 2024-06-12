@@ -13,8 +13,9 @@ dotenv.config();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use("/uploads", express.static("uploads"));
 app.use("/", authRouter);
-app.use("/", fasilitasRouter);
+app.use("/api/v1/fasilitas", fasilitasRouter);
 
 mongoose
   .connect("mongodb+srv://nailufarfrh:gqB1tIEoXmVh8XqN@cluster0.8tsgs3v.mongodb.net/klinik-fatimah?retryWrites=true&w=majority")

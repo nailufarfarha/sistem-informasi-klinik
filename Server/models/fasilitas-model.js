@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const fasilitasSchema = new mongoose.Schema(
   {
     keterangan: String,
-    img: {
+    image: {
       data: Buffer,
       contentType: String,
     },
