@@ -11,7 +11,8 @@ import Daftar from "./pages/admin/Daftar";
 import Dashboard from "./pages/admin/Dashboard";
 import AdmFasilitas from "./pages/admin/AdmFasilitas";
 import AdmLayanan from "./pages/admin/AdmLayanan";
-// import DataFasilitas from "./pages/admin/DataFasilitas";
+import Jadwal from "./components/Jadwal";
+import AdmJadwal from "./pages/admin/AdmJadwal";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -24,9 +25,11 @@ root.render(
       <Route path="/login" Component={Login} />
       <Route path="/daftar" Component={Daftar} />
       <Route path="/dashboard" Component={Dashboard} />
+      <Route path="/jadwal-layanan" Component={Jadwal} />
 
       <Route path="/dashboard/fasilitas" Component={AdmFasilitas} />
       <Route path="/dashboard/layanan" Component={AdmLayanan} />
+      <Route path="/dashboard/jadwal" Component={AdmJadwal} />
     </Routes>
   </BrowserRouter>
 );

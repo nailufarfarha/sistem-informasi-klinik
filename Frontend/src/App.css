@@ -2,6 +2,8 @@
 /* orange FF6403 */
 /* green 12835E*/
 
+/* CSS USER */
+
 .navbar {
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
 }
@@ -126,6 +128,7 @@
 
 .hero-1 img {
   opacity: 0.5;
+  height: 450px;
 }
 
 .hero-1 h2 {
@@ -145,6 +148,21 @@
 .tentang span {
   text-align: justify;
 }
+
+/* CSS JADWAL LAYANAN */
+.content-jadwal {
+  margin: 0px 50px;
+}
+
+.content-jadwal Table {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* .thead-jadwal {
+  background-color: #ff6403;
+  color: #fff;
+} */
 
 /* CSS ADMIN */
 .header-logo {
@@ -251,7 +269,8 @@
 }
 
 .content-fasilitas,
-.content-layanan {
+.content-layanan,
+.adm-jadwal {
   margin-left: 290px;
   margin-top: 100px;
 }
@@ -270,7 +289,8 @@
   margin-right: 50px;
 }
 
-.tambah-fasilitas {
+.tambah-fasilitas,
+.tambah-jadwal {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   margin-right: 50px;
   padding: 10px;

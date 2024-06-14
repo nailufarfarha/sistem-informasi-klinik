@@ -1,10 +1,9 @@
-// import React from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+
 import logo from "../assets/logo.png";
 
 const Navigation = () => {
@@ -17,12 +16,23 @@ const Navigation = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" style={{ justifyContent: "end" }}>
           <Nav className="mr-auto">
-            <Nav.Link href="/home">Beranda</Nav.Link>
-            <Nav.Link href="/about">Tentang Kami</Nav.Link>
+            <Nav.Link as={Link} to="/">
+              Beranda
+            </Nav.Link>
+            <Nav.Link as={Link} to="/about">
+              Tentang Kami
+            </Nav.Link>
             <NavDropdown title="Fasilitas & Layanan" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/fasilitas">Fasilitas</NavDropdown.Item>
-              <NavDropdown.Item href="/layanan">Layanan</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/fasilitas">
+                Fasilitas
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/layanan">
+                Layanan
+              </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link as={Link} to="/jadwal-layanan">
+              Jadwal Layanan
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

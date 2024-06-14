@@ -44,6 +44,12 @@ const Sidebar = () => {
             <span className="ms-2">Layanan</span>
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/dashboard/jadwal" className="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+            <FontAwesomeIcon icon={faRectangleList} />
+            <span className="ms-2">Jadwal</span>
+          </Link>
+        </li>
 
         <li className="sb-logout nav-item">
           <FontAwesomeIcon icon={faArrowRightToBracket} />
