@@ -1,5 +1,7 @@
 import Fasilitas from "../models/fasilitas-model.js";
-import { ObjectId } from "mongoose";
+import mongoose from "mongoose";
+
+const ObjectId = mongoose.Types.ObjectId;
 
 // Create
 export const createFasilitas = async (req, res) => {
@@ -46,6 +48,11 @@ export const getFasilitasById = async (req, res) => {
 // Update
 export const updateFasilitas = async (req, res) => {
   try {
+    const isValidObjectId = ObjectId.isValid(req.params._id);
+    if (!isValidObjectId) {
+      return res.status(400).json({ message: "Invalid ID" });
+    }
+
     const updatedData = {
       keterangan: req.body.keterangan,
     };
@@ -71,10 +78,16 @@ export const updateFasilitas = async (req, res) => {
 };
 
 // Delete
+
 export const deleteFasilitas = async (req, res) => {
-  console.log("Received id:", { _id: req.params.id }); // Tambahkan log ini
+  console.log("Received id:", req.params._id); // Tambahkan log ini
   try {
-    const fasilitas = await Fasilitas.findByIdAndDelete({ _id: req.params.id });
+    const isValidObjectId = ObjectId.isValid(req.params._id);
+    if (!isValidObjectId) {
+      return res.status(400).json({ message: "Invalid ID" });
+    }
+
+    const fasilitas = await Fasilitas.findByIdAndDelete(req.params._id);
     if (!fasilitas) {
       return res.status(404).json({ message: "Fasilitas not found" });
     }
@@ -85,3 +98,14 @@ export const deleteFasilitas = async (req, res) => {
     res.status(500).json({ message: "Error deleting fasilitas", error });
   }
 };
+//   try {
+//     const fasilitas = await Fasilitas.findByIdAndDelete(req.params.id);
+//     if (!fasilitas) {
+//       return res.status(404).json({ message: "Fasilitas not found" });
+//     }
+//     res.status(200).json({ message: "Fasilitas deleted successfully" });
+//   } catch (error) {
+//     console.error("Error deleting fasilitas:", error);
+//     res.status(500).json({ message: "Error deleting fasilitas", error });
+//   }
+// };
