@@ -1,7 +1,9 @@
+import React from "react";
 import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faTwitter, faSquareInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -19,7 +21,9 @@ const Footer = () => {
             <FontAwesomeIcon icon={faEnvelope} /> fatimahmedicalclinic@gmail.com
           </p>
           <p className="contact">
-            <FontAwesomeIcon icon={faLocationDot} /> Jl. Cikeris, Desa Cikeris, Kecamatan Bojong, Kabupaten Purwakarta
+            <Link to="https://maps.app.goo.gl/U12vUb4Ttnd49exLA" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit" }}>
+              <FontAwesomeIcon icon={faLocationDot} /> Jl. Cikeris, Desa Cikeris, Kecamatan Bojong, Kabupaten Purwakarta
+            </Link>
           </p>
         </div>
         <div className="footer-column">

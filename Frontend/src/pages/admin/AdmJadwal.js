@@ -55,7 +55,7 @@ const AdmJadwal = () => {
     setJamSelesai(e.target.value);
   };
 
-  const tambahJadwal = () => {
+  const handleCreate = () => {
     const hari = hariMulai === "Setiap Hari" ? "Setiap Hari" : `${hariMulai} - ${hariSelesai}`;
     const jam = `${jamMulai} - ${jamSelesai}`;
 
@@ -117,7 +117,7 @@ const AdmJadwal = () => {
     if (isEditing) {
       handleUpdate();
     } else {
-      tambahJadwal();
+      handleCreate();
     }
   };
 
