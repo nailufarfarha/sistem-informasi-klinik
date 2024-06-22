@@ -29,3 +29,15 @@ export const validationJadwal = [
   check("hari", "Hari harus dipilih!").notEmpty(),
   check("jam", "Jam harus dipilih!").notEmpty(),
 ];
+
+// export const validatationFasilitas = [
+//   check("image").notEmpty().withMessage("Gambar harus diisi"),
+//   check("keterangan").notEmpty().withMessage("Keterangan harus diisi"),
+//   (req, res, next) => {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       return res.status(400).json({ errors: errors.array() });
+//     }
+//     next();
+//   },
+// ];

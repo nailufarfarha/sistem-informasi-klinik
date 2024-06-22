@@ -34,7 +34,7 @@ export const getAllJadwals = async (req, res) => {
 export const getJadwalById = async (req, res) => {
   try {
     const jadwal = await Jadwal.findById(req.params.id);
-    if (jadwal == null) {
+    if (!jadwal) {
       return res.status(404).json({ message: "Jadwal not found" });
     }
     res.status(200).json(jadwal);
