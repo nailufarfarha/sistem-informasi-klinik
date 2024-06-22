@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "../../components/Sidebar";
 import Profile from "../../components/Profile";
 import { Table, Button } from "react-bootstrap";
@@ -15,135 +15,177 @@ function AdmFasilitas() {
 
   const [keterangan, setKeterangan] = useState("");
   const [image, setImage] = useState("");
-  const [imageUrl, setImageUrl] = useState(""); // State tambahan untuk URL gambar
   const [message, setMessage] = useState("");
-  const [imageData, setImageData] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [edit, setEdit] = useState(null);
   const [currentId, setCurrentId] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [fasilitass, setFasilitass] = useState([]);
+  const fileInputRef = useRef(null);
+  const [show, setShow] = useState(true);
 
-  const handleKeteranganChange = (e) => {
+  // get data dari server
+  useEffect(() => {
+    axios
+      .get("http://localhost:8081/api/v1/fasilitas")
+      .then((response) => {
+        setFasilitass(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  // untuk image
+  const onChangeImage = (e) => {
+    // setImage(e.target.value);
+    const file = e.target.files[0];
+    setImage(file);
+    setImagePreview(URL.createObjectURL(file));
+  };
+
+  // keterangan
+  const onChangeKeterangan = (e) => {
     setKeterangan(e.target.value);
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-    // setImage(e.target.files[0]);
-    setImageUrl(URL.createObjectURL(file)); // Set URL gambar untuk pratinjau
-  };
-
-  useEffect(() => {
-    const savedImageData = localStorage.getItem("imageData");
-    if (savedImageData) {
-      setImageData(JSON.parse(savedImageData));
+  // memproses tombol sumbit atau create data
+  const handleCreate = async () => {
+    if (!image) {
+      setMessage("Gambar harus dipilih");
+      return;
     }
-  }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+    if (!keterangan) {
+      setMessage("Keterangan harus diisi");
+      return;
+    }
+
     const data = new FormData();
+    data.append("image", image);
     data.append("keterangan", keterangan);
-    if (image) {
-      data.append("image", image);
-    }
 
-    if (isEditing) {
-      // Update existing data
-      axios
-        .patch(`http://localhost:8081/api/v1/fasilitas/$id`, data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((result) => {
-          if (result.data) {
-            const updatedImageData = [...imageData];
-            updatedImageData[edit] = {
-              image: image ? URL.createObjectURL(image) : imageData[edit].image,
-              keterangan: keterangan,
-            };
-            setImageData(updatedImageData);
-            localStorage.setItem("imageData", JSON.stringify(updatedImageData));
-            setIsEditing(false);
-            setEdit(null);
-
-            setImageUrl("");
-            setKeterangan("");
-            setMessage(result.data.message);
-            setTimeout(() => {
-              setMessage("");
-            }, 3000);
-          }
-        })
-        .catch((e) => {
-          if (e.response && e.response.data) {
-            setMessage(e.response.data.message);
-          } else {
-            setMessage("Error occurred, but no data available.");
-          }
-        });
-    } else {
-      // Add new data
-      axios
-        .post("http://localhost:8081/api/v1/fasilitas", data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((result) => {
-          if (result.data) {
-            const newImageData = [...imageData, { image: URL.createObjectURL(image), keterangan: keterangan }];
-            setImageData(newImageData);
-            localStorage.setItem("imageData", JSON.stringify(newImageData));
-            setImage("");
-            setImageUrl("");
-            setKeterangan("");
-            setMessage(result.data.message);
-            setTimeout(() => {
-              setMessage("");
-            }, 3000);
-          }
-        })
-        .catch((e) => {
-          setMessage(e.response.data.message);
-        });
-    }
-  };
-
-  const handleEdit = (index) => {
-    setIsEditing(true);
-
-    setImage(imageData[index].image);
-    setKeterangan(imageData[index].keterangan);
-  };
-
-  const handleDelete = async (id) => {
     axios
-      .delete(`http://localhost:8081/api/v1/fasilitas/delete/${id}`)
-      .then((result) => {
-        if (result.data) {
-          const updatedImageData = imageData.filter((item) => item.id !== id);
-          setImageData(updatedImageData);
-          localStorage.setItem("imageData", JSON.stringify(updatedImageData));
-          setMessage(result.data.message);
+      .post("http://localhost:8081/api/v1/fasilitas", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        setFasilitass([...fasilitass, response.data]);
+        resetForm();
+
+        setMessage("Fasilitas berhasil ditambahkan!");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleUpdate = () => {
+    if (!image) {
+      setMessage("Gambar harus dipilih");
+      return;
+    }
+
+    if (!keterangan) {
+      setMessage("Keterangan harus diisi");
+      return;
+    }
+
+    const data = new FormData();
+    data.append("image", image);
+    data.append("keterangan", keterangan);
+
+    axios
+      .put(`http://localhost:8081/api/v1/fasilitas/${currentId}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        if (response.data) {
+          setFasilitass((fasilitass) => fasilitass.map((item) => (item._id === currentId ? { ...item, image: URL.createObjectURL(image), keterangan: keterangan } : item)));
+          setIsEditing(false);
+          resetForm();
+
+          setMessage("Fasilitas Berhasil di Perbaharui!");
           setTimeout(() => {
             setMessage("");
           }, 3000);
         }
       })
-      .catch((e) => {
-        setMessage(e.response.data.message);
+      .catch((error) => {
+        console.error(error);
       });
   };
 
-  const handleCancel = () => {
-    setIsEditing(false);
-    setEdit(null);
-    setImage(null);
-    setImageUrl("");
+  const handleSubmit = () => {
+    if (isEditing && currentId) {
+      handleUpdate();
+    } else {
+      handleCreate();
+    }
+  };
+
+  const handleEdit = (index) => {
+    if (index >= 0 && index < fasilitass.length) {
+      setIsEditing(true);
+      setKeterangan(fasilitass[index].keterangan);
+      setCurrentId(fasilitass[index]._id);
+      setImagePreview(`http://localhost:8081/api/v1/fasilitas/image/${fasilitass[index]._id}`);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = null;
+      }
+    } else {
+      console.error("Invalid index:", index);
+    }
+  };
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:8081/api/v1/fasilitas/${id}`)
+      .then(() => {
+        setFasilitass((prevData) => prevData.filter((item) => item._id !== id));
+
+        setMessage("Fasilitas berhasil dihapus!");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error("Error deleting fasilitas", error);
+        setMessage(error.response?.data?.message || "Error deleting fasilitas");
+      });
+  };
+
+  // untuk reset atau mengosongkan form atau input
+  const resetForm = () => {
     setKeterangan("");
+    setImagePreview("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null;
+    }
+    setMessage("");
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    resetForm();
+  };
+
+  const AlertMessage = ({ message }) => {
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setShow(false);
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }, []);
   };
 
   return (
@@ -153,12 +195,19 @@ function AdmFasilitas() {
       <div className="content-fasilitas">
         <div className="tambah-fasilitas">
           <h4>{isEditing ? "Edit Fasilitas" : "Tambah Fasilitas"}</h4>
-          {message && <p>{message}</p>}
+
+          {message && show && (
+            <div className="alert alert-success" role="alert">
+              {message}
+            </div>
+          )}
+
           <div className="tambah-form">
             <label>Gambar</label>
-            <input type="file" name="image" id="image" onChange={handleImageChange} />
+            <input type="file" name="image" onChange={onChangeImage} ref={fileInputRef} />
+            {imagePreview && <img src={imagePreview} alt="Preview" width="100" />}
             <label>Keterangan</label>
-            <input type="text" name="keterangan" value={keterangan} onChange={handleKeteranganChange} />
+            <input type="text" name="keterangan" value={keterangan} onChange={onChangeKeterangan} />
             <div className="form-buttons">
               <Button type="submit" variant="success" onClick={handleSubmit}>
                 {isEditing ? "Update" : "Submit"}
@@ -181,18 +230,18 @@ function AdmFasilitas() {
               </tr>
             </thead>
             <tbody>
-              {imageData.map((item, index) => (
-                <tr key={index}>
+              {fasilitass.map((fasilitas, index) => (
+                <tr key={fasilitas._id}>
                   <td>{index + 1}</td>
                   <td>
-                    <img src={item.image} alt="uploaded" style={{ width: "auto", height: "100px" }} />
+                    <img src={`http://localhost:8081/api/v1/fasilitas/image/${fasilitas._id}`} alt="gambar" style={{ width: "auto", height: "100px" }} />
                   </td>
-                  <td>{item.keterangan}</td>
+                  <td>{fasilitas.keterangan}</td>
                   <td>
                     <Button type="button" variant="warning" onClick={() => handleEdit(index)}>
                       Edit
                     </Button>
-                    <Button type="button" variant="danger" onClick={() => handleDelete(item._id)}>
+                    <Button type="button" variant="danger" onClick={() => handleDelete(fasilitas._id)}>
                       Hapus
                     </Button>
                   </td>

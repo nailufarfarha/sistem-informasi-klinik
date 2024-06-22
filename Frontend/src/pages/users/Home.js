@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../App.css";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
@@ -9,7 +9,22 @@ import logo from "../../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStethoscope, faPersonBreastfeeding, faFlask, faMortarPestle, faUserNurse, faHouseMedical, faHospital } from "@fortawesome/free-solid-svg-icons";
 
+// import axios from "axios";
+
 const Home = () => {
+  // const [fasilitas, setFasilitas] = useState([]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8081/api/v1/fasilitas")
+  //     .then((response) => {
+  //       setFasilitas(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+
   return (
     <div className="body">
       <Navigation />
