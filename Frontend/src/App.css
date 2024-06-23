@@ -292,7 +292,7 @@ body {
   overflow-y: auto; /* Add this line to enable vertical scrolling */
   /* z-index: 1000; */
   /* transition: width 0.3s ease, left 0.3s ease; */
-  height: auto; /* Add a fixed height for the sidebar */
+  height: auto;
 }
 
 .admin-sidebar img {
@@ -311,6 +311,18 @@ body {
   bottom: 0;
   padding-bottom: 10px;
 }
+
+.btn-logout {
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+.btn-logout .icon-logout {
+  margin-right: 8px;
+}
+
+/* END SIDEBAR */
 
 .icon-profile {
   position: absolute;
@@ -348,7 +360,7 @@ body {
   padding: 10px;
 }
 
-/* CSS POPUP */
+/* CSS ALERT */
 
 .tambah-form {
   display: flex;

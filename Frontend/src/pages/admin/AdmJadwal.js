@@ -264,7 +264,7 @@ const AdmJadwal = () => {
                   <td>{jadwal.hari}</td>
                   <td>{jadwal.jam}</td>
                   <td>
-                    <Button type="button" variant="warning" onClick={() => handleEdit(jadwal)}>
+                    <Button type="button" variant="warning" onClick={() => handleEdit(jadwal)} style={{ color: "white", marginRight: "10px" }}>
                       Edit
                     </Button>
                     <Button variant="danger" onClick={() => handleDelete(jadwal._id)}>

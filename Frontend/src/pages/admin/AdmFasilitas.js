@@ -238,7 +238,7 @@ function AdmFasilitas() {
                   </td>
                   <td>{fasilitas.keterangan}</td>
                   <td>
-                    <Button type="button" variant="warning" onClick={() => handleEdit(index)}>
+                    <Button type="button" variant="warning" onClick={() => handleEdit(index)} style={{ color: "white", marginRight: "10px" }}>
                       Edit
                     </Button>
                     <Button type="button" variant="danger" onClick={() => handleDelete(fasilitas._id)}>

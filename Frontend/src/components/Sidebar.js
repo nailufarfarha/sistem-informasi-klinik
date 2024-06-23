@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faArrowRightToBracket, faFolderOpen, faRectangleList } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faArrowRightToBracket, faFolderOpen, faRectangleList, faBoxArchive } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logofooter.png";
 import "../App.css";
 
@@ -27,7 +27,7 @@ const Sidebar = () => {
         <li className="nav-item">
           <Link to="/dashboard" className="nav-link">
             <FontAwesomeIcon icon={faHouse} />
-            <span className="ms-2">Beranda</span>
+            <span className="ms-3">Beranda</span>
           </Link>
         </li>
         <hr className="sidebar-divider text-white" />
@@ -35,26 +35,27 @@ const Sidebar = () => {
         <li className="nav-item">
           <Link to="/dashboard/fasilitas" className="nav-link" href="tables.html">
             <FontAwesomeIcon icon={faFolderOpen} />
-            <span className="ms-2">Fasilitas</span>
+            <span className="ms-3">Fasilitas</span>
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/dashboard/layanan" className="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-            <FontAwesomeIcon icon={faRectangleList} />
-            <span className="ms-2">Layanan</span>
+            <FontAwesomeIcon icon={faBoxArchive} />
+            <span className="ms-3">Layanan</span>
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/dashboard/jadwal" className="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
             <FontAwesomeIcon icon={faRectangleList} />
-            <span className="ms-2">Jadwal</span>
+            <span className="ms-3">Jadwal</span>
           </Link>
         </li>
 
         <li className="sb-logout nav-item">
-          <FontAwesomeIcon icon={faArrowRightToBracket} />
-          <button onClick={handleLogout}>Keluar</button>
-          <span className="ms-2"></span>
+          <button onClick={handleLogout} className="btn-logout">
+            <FontAwesomeIcon icon={faArrowRightToBracket} className="icon-logout" />
+            Keluar
+          </button>
         </li>
       </ul>
     </div>
