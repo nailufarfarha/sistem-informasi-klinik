@@ -1,3 +1,4 @@
+import React from "react";
 import "../App.css";
 import Navigation from "./Navigation";
 import clinic from "../assets/clinic.jpeg";
@@ -51,3 +52,19 @@ const About = () => {
 };
 
 export default About;
+
+{
+  /* <Row>
+        <Col sm={4}>
+          <img src="https://www.ekahospital.com/storage/gallery/1668569805-dr---yansen---sp-jp---k----fihaimages-2020-08-10-141925-(1).png" style={{ width: "300px", marginLeft: "50px" }}></img>
+        </Col>
+        <Col>
+          <p style={{ paddingTop: "100px", paddingRight: "100px", textAlign: "justify", lineHeight: "40px" }}>
+            Fatimah Medical Clinic adalah sebuah klinik pratama atau fasilitas kesehatan yang menyelenggarakan dan menyediakan pelayanan medik dasar yang didirikan pada tanggal 08 November 2021 dan dibentuk oleh lebih dari satu tenaga
+            kesehatan yang dipimpin oleh seorang tenaga medis yaitu Dokter. Fatimah Medical Clinic terletak di Jl. Cikeris, Desa Cikeris, Kecamatan Bojong, Kabupaten Purwakarta dengan menyelenggarakan jasa di bidang kesehatan yaitu klinik.
+            Klinik ini dibangun sebagai pelayanan kesehatan opsional yang berfungsi sebagai usaha pencegahan dan penanggulangan terhadap upaya kesehatan masyarakat. Klinik ini mempunyai struktur organisasi yang didesain untuk memberikan
+            layanan medis dasar dan spesialis, dipimpin oleh tenaga medis yang kompeten dan berpengalaman.
+          </p>
+        </Col>
+      </Row> */
+}

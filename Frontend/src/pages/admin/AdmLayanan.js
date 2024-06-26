@@ -3,8 +3,17 @@ import Sidebar from "../../components/Sidebar";
 import Profile from "../../components/Profile";
 import { Table, Button } from "react-bootstrap";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 function AdmLayanan() {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
+
+  console.log("token", token);
+
   const [image, setImage] = useState("");
   const [judul, setJudul] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
@@ -51,6 +60,21 @@ function AdmLayanan() {
     data.append("judul", judul);
     data.append("deskripsi", deskripsi);
 
+    if (!image) {
+      setMessage("Gambar harus dipilih!");
+      return;
+    }
+
+    if (!judul) {
+      setMessage("Judul harus diisi!");
+      return;
+    }
+
+    if (!deskripsi) {
+      setMessage("Deskripsi harus diisi!");
+      return;
+    }
+
     axios
       .post("http://localhost:8081/api/v1/layanan", data, {
         headers: {
@@ -76,6 +100,21 @@ function AdmLayanan() {
     data.append("image", image);
     data.append("judul", judul);
     data.append("deskripsi", deskripsi);
+
+    if (!image) {
+      setMessage("Gambar harus dipilih!");
+      return;
+    }
+
+    if (!judul) {
+      setMessage("Judul harus diisi!");
+      return;
+    }
+
+    if (!deskripsi) {
+      setMessage("Deskripsi harus diisi!");
+      return;
+    }
 
     axios
       .put(`http://localhost:8081/api/v1/layanan/${currentId}`, data, {
@@ -184,11 +223,12 @@ function AdmLayanan() {
 
           <div className="tambah-form">
             <label>Gambar</label>
+            {/* <span>Image png</span> */}
             <input type="file" name="image" onChange={onChangeImage} ref={fileInputRef} />
             {imagePreview && <img src={imagePreview} alt="Preview" width="100" />}
             <label>Keterangan</label>
             <input type="text" name="judul" value={judul} onChange={onChangeJudul} />
-            <label>Keterangan</label>
+            <label>Deskripsi</label>
             <input type="text" name="deskripsi" value={deskripsi} onChange={onChangeDeskripsi} />
             <div className="form-buttons">
               <Button type="submit" variant="success" onClick={handleSubmit}>

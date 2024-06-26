@@ -3,15 +3,16 @@ import Sidebar from "../../components/Sidebar";
 import Profile from "../../components/Profile";
 import { Table, Button } from "react-bootstrap";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 function AdmFasilitas() {
-  // const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-  // if (!token) {
-  //   return <Navigate to="/login" />;
-  // }
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
 
-  // console.log("token", token);
+  console.log("token", token);
 
   const [keterangan, setKeterangan] = useState("");
   const [image, setImage] = useState("");

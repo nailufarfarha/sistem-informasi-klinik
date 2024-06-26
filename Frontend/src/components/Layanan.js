@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-// import "../App.css";
+import "../App.css";
 import Navigation from "./Navigation";
 import clinic from "../assets/clinic.jpeg";
 import Footer from "./Footer";

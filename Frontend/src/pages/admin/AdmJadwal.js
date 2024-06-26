@@ -3,8 +3,16 @@ import Sidebar from "../../components/Sidebar";
 import Profile from "../../components/Profile";
 import { Table, Button } from "react-bootstrap";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const AdmJadwal = () => {
+  // untuk ambil token login
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
+  console.log("token", token);
+
   const [layanan, setLayanan] = useState("");
   const [dokter, setDokter] = useState("");
   const [hariMulai, setHariMulai] = useState("");
@@ -59,6 +67,15 @@ const AdmJadwal = () => {
     const hari = hariMulai === "Setiap Hari" ? "Setiap Hari" : `${hariMulai} - ${hariSelesai}`;
     const jam = `${jamMulai} - ${jamSelesai}`;
 
+    // cek input
+    if (!layanan || !dokter || !hariMulai || (!hariSelesai && hariMulai !== "Setiap Hari") || !jamMulai || !jamSelesai) {
+      setMessage("Semua data harus diisi!");
+      setTimeout(() => {
+        setMessage("");
+      }, 2000);
+      return;
+    }
+
     const data = {
       layanan: layanan,
       dokter: dokter,
@@ -89,6 +106,15 @@ const AdmJadwal = () => {
   const handleUpdate = () => {
     const hari = hariMulai === "Setiap Hari" ? "Setiap Hari" : `${hariMulai} - ${hariSelesai}`;
     const jam = `${jamMulai} - ${jamSelesai}`;
+
+    // cek input
+    if (!layanan || !dokter || !hariMulai || (!hariSelesai && hariMulai !== "Setiap Hari") || !jamMulai || !jamSelesai) {
+      setMessage("Semua data harus diisi!");
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+      return;
+    }
 
     axios
       .put(`http://localhost:8081/api/v1/jadwal/${editedJadwalId}`, { layanan, dokter, hari, jam })

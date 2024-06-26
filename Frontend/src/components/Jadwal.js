@@ -23,9 +23,8 @@ const Jadwal = () => {
     <div>
       <Navigation></Navigation>
       <div className="hero-1">
-        {/* <img src={clinic} alt="Fatimah Medical Clinic" className="img-fluid" /> */}
-        <img src="https://awsimages.detik.net.id/community/media/visual/2022/02/14/ilustrasi-dokter_169.jpeg?w=650&q=80" className="img-fluid"></img>
-        {/* <h2>Jadwal Layanan</h2> */}
+        <img src={clinic} alt="Fatimah Medical Clinic" className="img-fluid" />
+        <h2>JADWAL LAYANAN</h2>
       </div>
       <h2 className="layanan-header">
         <span>Jadwal Layanan </span>

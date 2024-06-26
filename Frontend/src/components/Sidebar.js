@@ -54,7 +54,7 @@ const Sidebar = () => {
         <li className="sb-logout nav-item">
           <button onClick={handleLogout} className="btn-logout">
             <FontAwesomeIcon icon={faArrowRightToBracket} className="icon-logout" />
-            Keluar
+            <span>Keluar</span>
           </button>
         </li>
       </ul>
