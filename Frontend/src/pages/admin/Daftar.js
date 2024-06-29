@@ -38,7 +38,7 @@ const Daftar = () => {
     };
 
     axios
-      .post("http://localhost:8081/daftar", data)
+      .post("https://server.fatimahmedicalclinic.my.id/daftar", data)
       .then((result) => {
         if (result) {
           if (result.data) {

@@ -21,7 +21,7 @@ const AdmJadwal = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/api/v1/jadwal")
+      .get("https://server.fatimahmedicalclinic.my.id/api/v1/jadwal")
       .then((response) => {
         setJadwals(response.data);
       })
@@ -85,7 +85,7 @@ const AdmJadwal = () => {
       jam: jam,
     };
     axios
-      .post("http://localhost:8081/api/v1/jadwal", data)
+      .post("https://server.fatimahmedicalclinic.my.id/api/v1/jadwal", data)
       .then((response) => {
         setJadwals([...jadwals, response.data]);
         setLayanan("");
@@ -119,7 +119,7 @@ const AdmJadwal = () => {
     }
 
     axios
-      .put(`http://localhost:8081/api/v1/jadwal/${editedJadwalId}`, { layanan, dokter, hari, jam })
+      .put(`https://server.fatimahmedicalclinic.my.id/api/v1/jadwal/${editedJadwalId}`, { layanan, dokter, hari, jam })
       .then((response) => {
         setJadwals(jadwals.map((jadwal) => (jadwal._id === editedJadwalId ? response.data : jadwal)));
         setIsEditing(false);
@@ -175,7 +175,7 @@ const AdmJadwal = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:8081/api/v1/jadwal/${id}`)
+      .delete(`https://server.fatimahmedicalclinic.my.id/api/v1/jadwal/${id}`)
       .then(() => {
         setJadwals(jadwals.filter((jadwal) => jadwal._id !== id));
 

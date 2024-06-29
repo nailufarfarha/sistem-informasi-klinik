@@ -12,7 +12,7 @@ const Layanan = () => {
   // get data dari server
   useEffect(() => {
     axios
-      .get("http://localhost:8081/api/v1/layanan")
+      .get("https://server.fatimahmedicalclinic.my.id/api/v1/layanan")
       .then((response) => {
         setLayanan(response.data);
       })
@@ -35,7 +35,7 @@ const Layanan = () => {
       <div className="layanan-body">
         {layanan.map((item, index) => (
           <div className="card" key={index}>
-            <img src={`http://localhost:8081/api/v1/layanan/image/${item._id}`} alt="Logo" className="layanan-logo" />
+            <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/layanan/image/${item._id}`} alt="Logo" className="layanan-logo" />
             <h6>{item.judul}</h6>
             <p>{item.deskripsi}</p>
           </div>

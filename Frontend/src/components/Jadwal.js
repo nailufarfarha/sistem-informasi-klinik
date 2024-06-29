@@ -14,7 +14,7 @@ const Jadwal = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/api/v1/jadwal")
+      .get("https://server.fatimahmedicalclinic.my.id/api/v1/jadwal")
       .then((response) => {
         setJadwals(response.data);
       })

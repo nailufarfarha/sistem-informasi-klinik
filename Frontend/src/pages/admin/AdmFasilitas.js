@@ -8,7 +8,7 @@ import { Navigate } from "react-router-dom";
 
 function AdmFasilitas() {
 
-  const [keterangan, setKeterangan] = useState("");
+    const [keterangan, setKeterangan] = useState("");
   const [image, setImage] = useState("");
   const [message, setMessage] = useState("");
   // false: nilai awal state yang menunjukkan bahwa saat ini tidak dalam mode edit.
@@ -22,7 +22,7 @@ function AdmFasilitas() {
   // get data dari server
   useEffect(() => {
     axios
-      .get("http://localhost:8081/api/v1/fasilitas")
+      .get("https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas")
       .then((response) => {
         setFasilitass(response.data);
       })
@@ -71,7 +71,7 @@ function AdmFasilitas() {
     data.append("keterangan", keterangan);
 
     axios
-      .post("http://localhost:8081/api/v1/fasilitas", data, {
+      .post("https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -106,7 +106,7 @@ function AdmFasilitas() {
     data.append("keterangan", keterangan);
 
     axios
-      .put(`http://localhost:8081/api/v1/fasilitas/${currentId}`, data, {
+      .put(`https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas/${currentId}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -141,7 +141,7 @@ function AdmFasilitas() {
       setIsEditing(true);
       setKeterangan(fasilitass[index].keterangan);
       setCurrentId(fasilitass[index]._id);
-      setImagePreview(`http://localhost:8081/api/v1/fasilitas/image/${fasilitass[index]._id}`);
+      setImagePreview(`https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas/image/${fasilitass[index]._id}`);
       if (fileInputRef.current) {
         fileInputRef.current.value = null;
       }
@@ -152,7 +152,7 @@ function AdmFasilitas() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:8081/api/v1/fasilitas/${id}`)
+      .delete(`https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas/${id}`)
       .then(() => {
         setFasilitass((prevData) => prevData.filter((item) => item._id !== id));
 
@@ -240,7 +240,7 @@ function AdmFasilitas() {
                 <tr key={fasilitas._id}>
                   <td>{index + 1}</td>
                   <td>
-                    <img src={`http://localhost:8081/api/v1/fasilitas/image/${fasilitas._id}`} alt="gambar" style={{ width: "auto", height: "100px" }} />
+                    <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas/image/${fasilitas._id}`} alt="gambar" style={{ width: "auto", height: "100px" }} />
                   </td>
                   <td>{fasilitas.keterangan}</td>
                   <td>

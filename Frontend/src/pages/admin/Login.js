@@ -28,7 +28,7 @@ const Login = () => {
       password: password,
     };
     axios
-      .post("http://localhost:8081/login", data)
+      .post("https://server.fatimahmedicalclinic.my.id/login", data)
       .then((result) => {
         if (result) {
           localStorage.setItem("token", result.data.token);

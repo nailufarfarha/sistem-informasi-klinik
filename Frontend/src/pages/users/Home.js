@@ -16,7 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/api/v1/fasilitas")
+      .get("https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas")
       .then((response) => {
         setFasilitas(response.data);
       })
@@ -30,7 +30,7 @@ const Home = () => {
   // get data dari server
   useEffect(() => {
     axios
-      .get("http://localhost:8081/api/v1/layanan")
+      .get("https://server.fatimahmedicalclinic.my.id/api/v1/layanan")
       .then((response) => {
         setLayanan(response.data);
       })
@@ -79,7 +79,7 @@ const Home = () => {
         <div className="grid-container">
           {layanan.map((item, index) => (
             <div className="card" key={index}>
-              <img src={`http://localhost:8081/api/v1/layanan/image/${item._id}`} alt="Logo" className="icon-layanan" />
+              <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/layanan/image/${item._id}`} alt="Logo" className="icon-layanan" />
               <h6>{item.judul}</h6>
             </div>
           ))}
@@ -125,13 +125,13 @@ const Home = () => {
         <div className="grid-container-fas">
           {/* <Images></Images> */}
           <div className="card">
-            <img src={`http://localhost:8081/api/v1/fasilitas/image/667c54e9da1974a3d6f57882`} alt="Klinik Fatimah" className="img-fluid" />
+            <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas/image/667c54e9da1974a3d6f57882`} alt="Klinik Fatimah" className="img-fluid" />
           </div>
           <div className="card">
-            <img src={`http://localhost:8081/api/v1/fasilitas/image/667c580bda1974a3d6f57892`} alt="Tempat Registrasi" className="img-fluid" />
+            <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas/image/667c580bda1974a3d6f57892`} alt="Tempat Registrasi" className="img-fluid" />
           </div>
           <div className="card">
-            <img src={`http://localhost:8081/api/v1/fasilitas/image/667c57f4da1974a3d6f5788f`} alt="Ruang IGD" className="img-fluid" />
+            <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas/image/667c57f4da1974a3d6f5788f`} alt="Ruang IGD" className="img-fluid" />
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
