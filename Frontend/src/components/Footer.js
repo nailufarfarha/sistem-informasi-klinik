@@ -3,6 +3,7 @@ import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
+//library untuk mengelola navigasi dan routing
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -15,13 +16,13 @@ const Footer = () => {
         <div className="footer-column">
           <h5>Hubungi Kami</h5>
           <p className="contact">
-            <Link to="https://wa.me/6281818242321?text=Halo,%20saya%20tertarik%20dengan%20layanan%20Anda" target="_blank" className="link">
-              <FontAwesomeIcon icon={faPhone} /> 08123456789
+            <Link to="https://wa.me/6282123898188?text=Halo,%20Fatimah%20Medical%20Clinic%20......%20" target="_blank" className="link">
+              <FontAwesomeIcon icon={faPhone} /> 082123898188
             </Link>
           </p>
-          <p className="contact">
+          {/* <p className="contact">
             <FontAwesomeIcon icon={faEnvelope} /> fatimahmedicalclinic@gmail.com
-          </p>
+          </p> */}
           <p className="contact">
             <Link to="https://maps.app.goo.gl/U12vUb4Ttnd49exLA" target="_blank" rel="noopener noreferrer" className="link">
               <FontAwesomeIcon icon={faLocationDot} /> Jl. Cikeris, Desa Cikeris, Kecamatan Bojong, Kabupaten Purwakarta

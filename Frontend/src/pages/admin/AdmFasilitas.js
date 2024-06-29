@@ -1,3 +1,4 @@
+// useRef menyimpan nilai yang bisa berubah tanpa menyebabkan komponen dirender ulang.
 import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "../../components/Sidebar";
 import Profile from "../../components/Profile";
@@ -6,6 +7,7 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 
 function AdmFasilitas() {
+  // get token di local, jika tidak ada token akan direct ke halaman admin
   const token = localStorage.getItem("token");
 
   if (!token) {
@@ -17,11 +19,12 @@ function AdmFasilitas() {
   const [keterangan, setKeterangan] = useState("");
   const [image, setImage] = useState("");
   const [message, setMessage] = useState("");
+  // false: nilai awal state yang menunjukkan bahwa saat ini tidak dalam mode edit.
   const [isEditing, setIsEditing] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [fasilitass, setFasilitass] = useState([]);
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef(null); //fileInputRef: menyimpan referensi ke elemen input file, memungkinkan untuk mengakses elemen DOM secara langsung.
   const [show, setShow] = useState(true);
 
   // get data dari server

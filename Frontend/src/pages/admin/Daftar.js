@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import piclogin from "../../assets/login.png";
 import logo from "../../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Daftar = () => {
@@ -10,6 +10,7 @@ const Daftar = () => {
   const [password, setPassword] = useState("");
   const [Message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
 
   const ChangeUsername = (e) => {
     const value = e.target.value;
@@ -46,9 +47,15 @@ const Daftar = () => {
             setPassword("");
 
             setMessage(result.data.message);
+
             setTimeout(() => {
               setMessage("");
-            }, 5000);
+              navigate("/login"); // Melakukan navigasi ke halaman login setelah 5 detik
+            }, 2000);
+
+            // setTimeout(() => {
+            //   setMessage("");
+            // }, 5000);
           }
         }
       })

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import Navigation from "./Navigation";
 import clinic from "../assets/clinic.jpeg";

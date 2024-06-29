@@ -306,6 +306,35 @@
 
 /* CSS ADMIN */
 
+/* DASHBOARD */
+
+.dashboard-admin {
+  text-align: center;
+  justify-content: center;
+  padding-top: 90px;
+  padding-left: 220px;
+}
+
+.dashboard-admin img {
+  padding-top: 50px;
+  width: 550px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-admin {
+    text-align: center;
+    justify-content: center;
+    padding-top: 150px;
+    padding-left: 50px;
+  }
+  .dashboard-admin img {
+    padding-top: 50px;
+    width: 300px;
+  }
+}
+
+/* END DASHBOARD */
+
 /* LOGIN */
 .header-logo {
   background-color: #0f6448;

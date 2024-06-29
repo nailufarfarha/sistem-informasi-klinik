@@ -65,6 +65,11 @@ function AdmLayanan() {
       return;
     }
 
+    if (image.type !== "image/png") {
+      setMessage("Gambar harus berformat PNG!");
+      return;
+    }
+
     if (!judul) {
       setMessage("Judul harus diisi!");
       return;
