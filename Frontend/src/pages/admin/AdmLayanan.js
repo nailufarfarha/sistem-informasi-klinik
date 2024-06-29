@@ -6,14 +6,6 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 
 function AdmLayanan() {
-  const token = localStorage.getItem("token");
-
-  if (!token) {
-    return <Navigate to="/login" />;
-  }
-
-  console.log("token", token);
-
   const [image, setImage] = useState("");
   const [judul, setJudul] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
@@ -36,6 +28,16 @@ function AdmLayanan() {
         console.error(error);
       });
   }, []);
+  
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
+
+  console.log("token", token);
+
+  
 
   // untuk image
   const onChangeImage = (e) => {

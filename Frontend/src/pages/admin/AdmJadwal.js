@@ -6,12 +6,6 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 
 const AdmJadwal = () => {
-  // untuk ambil token login
-  const token = localStorage.getItem("token");
-  if (!token) {
-    return <Navigate to="/login" />;
-  }
-  console.log("token", token);
 
   const [layanan, setLayanan] = useState("");
   const [dokter, setDokter] = useState("");
@@ -35,6 +29,14 @@ const AdmJadwal = () => {
         console.error(error);
       });
   }, []);
+  // untuk ambil token login
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
+  console.log("token", token);
+
+  
 
   const daysOfWeek = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu", "Setiap Hari"];
   const hours = Array.from({ length: 24 }, (_, i) => `${i.toString().padStart(2, "0")}:00`);

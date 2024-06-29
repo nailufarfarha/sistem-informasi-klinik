@@ -7,14 +7,6 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 
 function AdmFasilitas() {
-  // get token di local, jika tidak ada token akan direct ke halaman admin
-  const token = localStorage.getItem("token");
-
-  if (!token) {
-    return <Navigate to="/login" />;
-  }
-
-  console.log("token", token);
 
   const [keterangan, setKeterangan] = useState("");
   const [image, setImage] = useState("");
@@ -38,6 +30,16 @@ function AdmFasilitas() {
         console.error(error);
       });
   }, []);
+  // get token di local, jika tidak ada token akan direct ke halaman admin
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
+
+  console.log("token", token);
+
+
 
   // untuk image
   const onChangeImage = (e) => {
