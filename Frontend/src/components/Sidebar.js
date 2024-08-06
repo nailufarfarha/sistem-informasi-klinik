@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faArrowRightToBracket, faFolderOpen, faRectangleList, faBoxArchive } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faArrowRightToBracket, faFolderOpen, faRectangleList, faBoxArchive, faHospitalUser, faNotesMedical } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logofooter.png";
 import "../App.css";
 
@@ -48,6 +48,18 @@ const Sidebar = () => {
           <Link to="/dashboard/jadwal" className="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
             <FontAwesomeIcon icon={faRectangleList} />
             <span className="ms-3">Jadwal</span>
+          </Link>
+        </li>
+        {/* <li className="nav-item">
+          <Link to="/dashboard/data-pasien" className="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+            <FontAwesomeIcon icon={faHospitalUser} />
+            <span className="ms-3">Data Pasien</span>
+          </Link>
+        </li> */}
+        <li className="nav-item">
+          <Link to="/dashboard/janji-temu" className="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+            <FontAwesomeIcon icon={faNotesMedical} />
+            <span className="ms-3">Janji Temu</span>
           </Link>
         </li>
 

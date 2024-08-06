@@ -4,10 +4,12 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 
-import authRouter from "./routes/auth-router.js";
+import adminRouter from "./routes/admin-router.js";
+import userRouter from "./routes/user-router.js";
 import fasilitasRouter from "./routes/fasilitas-router.js";
 import jadwalRouter from "./routes/jadwal-router.js";
 import layananRouter from "./routes/layanan-router.js";
+import janjiRouter from "./routes/janji-router.js";
 
 const app = express();
 // const PORT = process.env.PORT || 8081;
@@ -19,16 +21,19 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use(bodyParser.json({ limit: "50mb" }));
-// app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+app.get("/", (req, res) => {
+  res.send("Welcome");
+});
 
-app.use("/", authRouter);
+app.use("/", adminRouter);
+app.use("/", userRouter);
 app.use("/api/v1/fasilitas", fasilitasRouter);
 app.use("/api/v1/jadwal", jadwalRouter);
 app.use("/api/v1/layanan", layananRouter);
+app.use("/api/v1/janji", janjiRouter);
 
 mongoose
-  .connect("mongodb+srv://nailufarfrh:gqB1tIEoXmVh8XqN@cluster0.8tsgs3v.mongodb.net/klinik-fatimah?retryWrites=true&w=majority")
+  .connect("mongodb+srv://nailufarfrh:gqB1tIEoXmVh8XqN@cluster0.8tsgs3v.mongodb.net/db-fatimah?retryWrites=true&w=majority")
   .then(() => {
     app.listen(PORT, () => {
       console.log("Server running on port: ", PORT);

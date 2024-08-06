@@ -8,6 +8,7 @@ import logo from "../../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import TawkToChat from "../../tawkto";
 
 import axios from "axios";
 
@@ -16,7 +17,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas")
+      .get("http://localhost:8081/api/v1/fasilitas")
       .then((response) => {
         setFasilitas(response.data);
       })
@@ -30,7 +31,7 @@ const Home = () => {
   // get data dari server
   useEffect(() => {
     axios
-      .get("https://server.fatimahmedicalclinic.my.id/api/v1/layanan")
+      .get("http://localhost:8081/api/v1/layanan")
       .then((response) => {
         setLayanan(response.data);
       })
@@ -53,10 +54,10 @@ const Home = () => {
         </h2>
         <div className="about-1">
           <Row>
-            <Col>
+            <Col xs={12} md={6}>
               <img src={logo} alt="Fatimah Medical Clinic" />
             </Col>
-            <Col className="overview">
+            <Col className="overview" xs={12} md={6}>
               Fatimah Medical Clinic adalah sebuah klinik pratama atau fasilitas kesehatan yang menyelenggarakan dan menyediakan pelayanan medik dasar yang didirikan pada tanggal 08 November 2021 dan dibentuk oleh lebih dari satu tenaga
               kesehatan yang dipimpin oleh seorang tenaga medis yaitu Dokter yang terletak di Jl. Cikeris Desa Cikeris Kecamatan Bojong Kabupaten Purwakarta.
               {/* <br /> */}
@@ -79,7 +80,7 @@ const Home = () => {
         <div className="grid-container">
           {layanan.map((item, index) => (
             <div className="card" key={index}>
-              <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/layanan/image/${item._id}`} alt="Logo" className="icon-layanan" />
+              <img src={`http://localhost:8081/api/v1/layanan/image/${item._id}`} alt="Logo" className="icon-layanan" />
               <h6>{item.judul}</h6>
             </div>
           ))}
@@ -125,13 +126,13 @@ const Home = () => {
         <div className="grid-container-fas">
           {/* <Images></Images> */}
           <div className="card">
-            <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas/image/667c54e9da1974a3d6f57882`} alt="Klinik Fatimah" className="img-fluid" />
+            <img src={`http://localhost:8081/api/v1/fasilitas/image/66a267497720d36e9821c92c`} alt="Klinik Fatimah" className="img-fluid" />
           </div>
           <div className="card">
-            <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas/image/667c580bda1974a3d6f57892`} alt="Tempat Registrasi" className="img-fluid" />
+            <img src={`http://localhost:8081/api/v1/fasilitas/image/66a267977720d36e9821c938`} alt="Tempat Registrasi" className="img-fluid" />
           </div>
           <div className="card">
-            <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas/image/667c57f4da1974a3d6f5788f`} alt="Ruang IGD" className="img-fluid" />
+            <img src={`http://localhost:8081/api/v1/fasilitas/image/66a267747720d36e9821c932`} alt="Ruang IGD" className="img-fluid" />
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -140,6 +141,7 @@ const Home = () => {
           </Link>
         </div>
       </div>
+      {/* <TawkToChat /> */}
       {/* footer */}
       <Footer />
     </div>

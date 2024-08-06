@@ -1,6 +1,7 @@
 // useState untuk menyimpan dan mengubah data di dalam komponen React.
 // useEffect adalah cara untuk menjalankan sesuatu setelah komponen ditampilkan di layar.
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "./Navigation";
 import clinic from "../assets/clinic.jpeg";
 import Footer from "./Footer";
@@ -11,10 +12,11 @@ import axios from "axios";
 
 const Jadwal = () => {
   const [jadwals, setJadwals] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("https://server.fatimahmedicalclinic.my.id/api/v1/jadwal")
+      .get("http://localhost:8081/api/v1/jadwal")
       .then((response) => {
         setJadwals(response.data);
       })
@@ -22,6 +24,10 @@ const Jadwal = () => {
         console.error(error);
       });
   }, []);
+
+  const handleJanji = () => {
+    navigate("/janji-temu");
+  };
 
   return (
     <div>
@@ -91,6 +97,15 @@ const Jadwal = () => {
             ))}
           </tbody> */}
         </Table>
+
+        <div>
+          <span>
+            Ingin membuat janji temu bersama dokter?{" "}
+            <button className="btn-janji" onClick={handleJanji}>
+              Klik Disini
+            </button>
+          </span>
+        </div>
       </div>
 
       <Footer></Footer>

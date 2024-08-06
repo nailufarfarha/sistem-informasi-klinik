@@ -4,13 +4,14 @@ const jadwalSchema = new mongoose.Schema(
   {
     layanan: {
       type: String,
+      unique: true,
+      required: true,
     },
     dokter: {
       type: String,
     },
     hari: {
       type: String,
-      // enum: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
     },
     jam: {
       type: String,

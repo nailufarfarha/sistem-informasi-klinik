@@ -20,7 +20,7 @@ function AdmLayanan() {
   // get data dari server
   useEffect(() => {
     axios
-      .get("https://server.fatimahmedicalclinic.my.id/api/v1/layanan")
+      .get("http://localhost:8081/api/v1/layanan")
       .then((response) => {
         setLayanan(response.data);
       })
@@ -32,12 +32,10 @@ function AdmLayanan() {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/admin/login" />;
   }
 
   console.log("token", token);
-
-  
 
   // untuk image
   const onChangeImage = (e) => {
@@ -83,7 +81,7 @@ function AdmLayanan() {
     }
 
     axios
-      .post("https://server.fatimahmedicalclinic.my.id/api/v1/layanan", data, {
+      .post("http://localhost:8081/api/v1/layanan", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -124,7 +122,7 @@ function AdmLayanan() {
     }
 
     axios
-      .put(`https://server.fatimahmedicalclinic.my.id/api/v1/layanan/${currentId}`, data, {
+      .put(`http://localhost:8081/api/v1/layanan/${currentId}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -160,7 +158,7 @@ function AdmLayanan() {
       setJudul(layanan[index].judul);
       setDeskripsi(layanan[index].deskripsi);
       setCurrentId(layanan[index]._id);
-      setImagePreview(`https://server.fatimahmedicalclinic.my.id/api/v1/layanan/image/${layanan[index]._id}`);
+      setImagePreview(`http://localhost:8081/api/v1/layanan/image/${layanan[index]._id}`);
       if (fileInputRef.current) {
         fileInputRef.current.value = null;
       }
@@ -171,7 +169,7 @@ function AdmLayanan() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`https://server.fatimahmedicalclinic.my.id/api/v1/layanan/${id}`)
+      .delete(`http://localhost:8081/api/v1/layanan/${id}`)
       .then(() => {
         setLayanan((prevData) => prevData.filter((item) => item._id !== id));
 
@@ -264,7 +262,7 @@ function AdmLayanan() {
                 <tr key={layanan._id}>
                   <td>{index + 1}</td>
                   <td>
-                    <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/layanan/image/${layanan._id}`} alt="gambar" style={{ width: "auto", height: "100px" }} />
+                    <img src={`http://localhost:8081/api/v1/layanan/image/${layanan._id}`} alt="gambar" style={{ width: "auto", height: "100px" }} />
                   </td>
                   <td>{layanan.judul}</td>
                   <td>{layanan.deskripsi}</td>

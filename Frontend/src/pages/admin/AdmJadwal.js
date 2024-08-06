@@ -6,7 +6,6 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 
 const AdmJadwal = () => {
-
   const [layanan, setLayanan] = useState("");
   const [dokter, setDokter] = useState("");
   const [hariMulai, setHariMulai] = useState("");
@@ -21,7 +20,7 @@ const AdmJadwal = () => {
 
   useEffect(() => {
     axios
-      .get("https://server.fatimahmedicalclinic.my.id/api/v1/jadwal")
+      .get("http://localhost:8081/api/v1/jadwal")
       .then((response) => {
         setJadwals(response.data);
       })
@@ -32,11 +31,9 @@ const AdmJadwal = () => {
   // untuk ambil token login
   const token = localStorage.getItem("token");
   if (!token) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/admin/login" />;
   }
   console.log("token", token);
-
-  
 
   const daysOfWeek = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu", "Setiap Hari"];
   const hours = Array.from({ length: 24 }, (_, i) => `${i.toString().padStart(2, "0")}:00`);
@@ -85,7 +82,7 @@ const AdmJadwal = () => {
       jam: jam,
     };
     axios
-      .post("https://server.fatimahmedicalclinic.my.id/api/v1/jadwal", data)
+      .post("http://localhost:8081/api/v1/jadwal", data)
       .then((response) => {
         setJadwals([...jadwals, response.data]);
         setLayanan("");
@@ -119,7 +116,7 @@ const AdmJadwal = () => {
     }
 
     axios
-      .put(`https://server.fatimahmedicalclinic.my.id/api/v1/jadwal/${editedJadwalId}`, { layanan, dokter, hari, jam })
+      .put(`http://localhost:8081/api/v1/jadwal/${editedJadwalId}`, { layanan, dokter, hari, jam })
       .then((response) => {
         setJadwals(jadwals.map((jadwal) => (jadwal._id === editedJadwalId ? response.data : jadwal)));
         setIsEditing(false);
@@ -175,7 +172,7 @@ const AdmJadwal = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`https://server.fatimahmedicalclinic.my.id/api/v1/jadwal/${id}`)
+      .delete(`http://localhost:8081/api/v1/jadwal/${id}`)
       .then(() => {
         setJadwals(jadwals.filter((jadwal) => jadwal._id !== id));
 
@@ -218,6 +215,7 @@ const AdmJadwal = () => {
           {/* {message && <p>{message}</p>} */}
           <div className="tambah-form">
             <label>Layanan</label>
+
             <input type="text" name="layanan" value={layanan} onChange={onChangeLayanan} />
             <label>Nama Dokter</label>
             <input type="text" name="dokter" value={dokter} onChange={onChangeDokter} />

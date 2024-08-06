@@ -1,14 +1,16 @@
 import React, { useState, Fragment } from "react";
 import piclogin from "../../assets/login.png";
 import logo from "../../assets/logo.png";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const [redirect, setRedirect] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
 
   const onChangeUsername = (e) => {
     const value = e.target.value;
@@ -28,10 +30,15 @@ const Login = () => {
       password: password,
     };
     axios
-      .post("http://localhost:8081/admin/login", data)
+      .post("http://localhost:8081/login", data)
       .then((result) => {
         if (result) {
           localStorage.setItem("token", result.data.token);
+          localStorage.setItem("username", result.data.username); // Simpan username ke localStorage
+          localStorage.setItem("namalengkap", result.data.namalengkap); // Simpan username ke localStorage
+          localStorage.setItem("umur", result.data.umur); // Simpan username ke localStorage
+          localStorage.setItem("alamat", result.data.alamat); // Simpan username ke localStorage
+          localStorage.setItem("nohp", result.data.nohp); // Simpan username ke localStorage
           setRedirect(true);
         }
       })
@@ -42,7 +49,7 @@ const Login = () => {
 
   return (
     <Fragment>
-      {redirect && <Navigate to="/dashboard" />}
+      {redirect && <Navigate to="/janji-temu" />}
       <div className="container-fluid">
         <div className="row">
           <div className="header-logo col-md-6">
@@ -55,7 +62,8 @@ const Login = () => {
             <div className="pic-log">
               <img src={logo} />
             </div>
-            <h4 className="txt-log">Login Admin</h4>
+            <h4 className="txt-log">Login</h4>
+            <h6 style={{ textAlign: "center" }}>Silahkan login terlebih dahulu!</h6>
 
             <div>
               <p>{errorMsg}</p>

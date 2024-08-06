@@ -6,7 +6,11 @@ const layananSchema = new mongoose.Schema(
       data: Buffer,
       contentType: String,
     },
-    judul: String,
+    judul: {
+      type: String,
+      unique: true,
+      required: true,
+    },
     deskripsi: String,
   },
   { timestamps: true }

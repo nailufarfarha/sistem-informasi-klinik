@@ -33,6 +33,9 @@ const Navigation = () => {
             <Nav.Link as={Link} to="/jadwal-layanan">
               Jadwal Layanan
             </Nav.Link>
+            <Nav.Link as={Link} to="/janji-temu">
+              Janji Temu
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -24,7 +24,7 @@ const Fasilitas = () => {
   // [] berarti efek ini hanya dijalankan sekali saat komponen pertama kali ditampilkan.
   useEffect(() => {
     axios
-      .get("https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas")
+      .get("http://localhost:8081/api/v1/fasilitas")
       .then((response) => {
         setFasilitas(response.data);
       })
@@ -70,7 +70,7 @@ const Fasilitas = () => {
                 // sm={4}: Mengatur ukuran kolom pada layar kecil. 4 berarti kolom akan mengambil 4 dari 12 bagian layar.
                 <Col sm={4} key={idx}>
                   <div className="img-fasilitas">
-                    <img src={`https://server.fatimahmedicalclinic.my.id/api/v1/fasilitas/image/${gambar._id}`} alt="Gambar" className="img-fluid" />
+                    <img src={`http://localhost:8081/api/v1/fasilitas/image/${gambar._id}`} alt="Gambar" className="img-fluid" />
                     <div className="img-text-fasilitas">{gambar.keterangan}</div>
                   </div>
                 </Col>

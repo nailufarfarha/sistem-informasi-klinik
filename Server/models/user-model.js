@@ -11,8 +11,19 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
     },
+    umur: {
+      type: Number,
+    },
+    alamat: {
+      type: String,
+    },
+    nohp: {
+      type: String,
+    },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
 export default mongoose.model("User", userSchema);
